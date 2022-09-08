@@ -1,6 +1,7 @@
 # Nest auth API
 ## Its an  session-based auth api. 
 It is very easy to use
+
 First of all we must register with our username and password using ```POST``` request(with Postman or idk...) to url ```path/users/signup```
 
 Then we can login wih that credentials using ```POST``` request to url ```path/users/login``` (this returns our user, and in sessionId in cookie section)
