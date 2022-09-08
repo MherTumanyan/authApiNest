@@ -24,6 +24,13 @@ export class UsersController {
     @Body('username') userName: string,
   ) 
   {
+    const user = await this.usersService.getUser(userName);    
+    if(user) return {
+      msg: 'User already exists',
+      userId: user.id,
+      userName: user.username
+    };
+
     //hash password
     const saltOrRounds = 10;
     const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
@@ -56,7 +63,7 @@ export class UsersController {
     return req.user;
   }
 
-  //Get / logout
+  //Get /logout
   @Get('/logout')
     logout(@Request() req): { msg: string; } {
       req.session.destroy()

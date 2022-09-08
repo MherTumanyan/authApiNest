@@ -10,9 +10,9 @@ export class UsersService {
  
   //Signup user with username and password
   async insertUser(userName: string, password: string) {
-    const username = userName.toLowerCase();
+    const lowerCasedUsername = userName.toLowerCase();
     const newUser = new this.UserModel({
-      username,
+      username: lowerCasedUsername,
       password,
     });
     await newUser.save();
@@ -21,8 +21,8 @@ export class UsersService {
 
   //log in user
   async getUser(userName: string) {
-    const username = userName.toLowerCase();
-    const user = await this.UserModel.findOne({ username });
+    const lowerCasedUsername = userName.toLowerCase();
+    const user = await this.UserModel.findOne({ username: lowerCasedUsername });
     return user;
   }
 }
